@@ -6,7 +6,6 @@ const app = express();
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 app.use(express.static('public'));
-// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));
 
 const items = [];
@@ -16,8 +15,10 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-    const item = req.body.elel;
-    items.push(item);
+    const item = req.body.elel.trim(); // Remove surrounding spaces
+    if (item !== "") {
+        items.push(item); // Only add non-empty strings
+    }
     res.redirect("/");
 });
 
