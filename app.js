@@ -1,30 +1,30 @@
-// const express = require("express");
-// const bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-// const app = express();
+const app = express();
 
-// // Set EJS as the view engine
-// app.set("view engine", "ejs");
-// app.use(express.static('public'));
-// app.use(express.urlencoded({ extended: true }));
+// Set EJS as the view engine
+app.set("view engine", "ejs");
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
-// const items = [];
+const items = [];
 
-// app.get("/", function(req, res) {
-//     res.render("list", { ejes: items });
-// });
+app.get("/", function(req, res) {
+    res.render("list", { ejes: items });
+});
 
-// app.post("/", function(req, res) {
-//     const item = req.body.elel.trim(); // Remove surrounding spaces
-//     if (item !== "") {
-//         items.push(item); // Only add non-empty strings
-//     }
-//     res.redirect("/");
-// });
+app.post("/", function(req, res) {
+    const item = req.body.elel.trim(); // Remove surrounding spaces
+    if (item !== "") {
+        items.push(item); // Only add non-empty strings
+    }
+    res.redirect("/");
+});
 
-// app.listen(5000, function() {
-//     console.log("Server started on port 5000");
-// });
+app.listen(5000, function() {
+    console.log("Server started on port 5000");
+});
 
 
 // const express = require("express");
@@ -91,48 +91,48 @@
 // });
  
 
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+// const express = require("express");
+// const fs = require("fs");
+// const path = require("path");
 
-const app = express();
+// const app = express();
 
-// Set EJS as the view engine
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+// // Set EJS as the view engine
+// app.set("view engine", "ejs");
+// app.use(express.static("public"));
+// app.use(express.urlencoded({ extended: true }));
 
-// In-memory items list (not stored permanently)
-let items = [];
+// // In-memory items list (not stored permanently)
+// let items = [];
 
-// Route to display the Todo List (clears on refresh)
-app.get("/", function (req, res) {
-    items = []; // clear items on every page load
-    res.render("list", { ejes: items });
-});
+// // Route to display the Todo List (clears on refresh)
+// app.get("/", function (req, res) {
+//     items = []; // clear items on every page load
+//     res.render("list", { ejes: items });
+// });
 
-// Route to add new item
-app.post("/", function (req, res) {
-    const text = req.body.text?.trim();
-    const priority = req.body.priority || "Normal";
+// // Route to add new item
+// app.post("/", function (req, res) {
+//     const text = req.body.text?.trim();
+//     const priority = req.body.priority || "Normal";
 
-    if (text !== "") {
-        items.push({ text, priority });
-    }
+//     if (text !== "") {
+//         items.push({ text, priority });
+//     }
 
-    res.render("list", { ejes: items });
-});
+//     res.render("list", { ejes: items });
+// });
 
-// Route to delete an item
-app.post("/delete", function (req, res) {
-    const index = parseInt(req.body.index);
-    if (!isNaN(index) && index >= 0 && index < items.length) {
-        items.splice(index, 1);
-    }
+// // Route to delete an item
+// app.post("/delete", function (req, res) {
+//     const index = parseInt(req.body.index);
+//     if (!isNaN(index) && index >= 0 && index < items.length) {
+//         items.splice(index, 1);
+//     }
 
-    res.render("list", { ejes: items });
-});
+//     res.render("list", { ejes: items });
+// });
 
-app.listen(5000, function () {
-    console.log("Server started on port 5000");
-});
+// app.listen(5000, function () {
+//     console.log("Server started on port 5000");
+// });
